@@ -24,7 +24,7 @@ def create_table():
             cur.execute(wallet_query)
             print("Table created successfully")
         except psycopg2.Error as e:
-            print(e)
+            raise e
 
 
 def create_account():
@@ -43,7 +43,7 @@ def create_account():
             results = cur.fetchall()
             print("Your wallet id is: {}".format(results[-1][0]))
         except psycopg2.Error as e:
-            print(e)
+            raise e
 
 
 def add_amount(wallet_id, amount):
@@ -59,7 +59,7 @@ def add_amount(wallet_id, amount):
                 raise NegetiveAmount("Amount must not be negetive")
             cur.execute(query, (amount, amount, wallet_id))
         except psycopg2.Error as e:
-            print(e)
+            raise e
 
 
 def spend_amount(wallet_id, amount):
@@ -75,7 +75,7 @@ def spend_amount(wallet_id, amount):
                 raise NegetiveAmount("Amount must not be negetive")
             cur.execute(query, (amount, amount, wallet_id))
         except psycopg2.Error as e:
-            print(e)
+            raise e
 
 
 def view_amounts(wallet_id):
@@ -89,7 +89,7 @@ def view_amounts(wallet_id):
             result = db.fetchone()
             return result
         except psycopg2.Error as e:
-            print(e)
+            raise e
 
 
 def drop_table():
