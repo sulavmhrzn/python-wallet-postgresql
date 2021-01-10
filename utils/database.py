@@ -19,10 +19,8 @@ class Database:
             port=self.port,
         )
         self.cursor = self.connection.cursor()
-        print("ENTEERRR")
         return self.cursor
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
         self.connection.commit()
         self.connection.close()
-        print("EXIT")

@@ -87,7 +87,7 @@ def view_amounts(wallet_id):
         try:
             db.execute(query, (wallet_id,))
             result = db.fetchone()
-            print(result)
+            return result
         except psycopg2.Error as e:
             print(e)
 
@@ -96,4 +96,3 @@ def drop_table():
     with database as cur:
         query = """drop table wallet"""
         cur.execute(query)
-
